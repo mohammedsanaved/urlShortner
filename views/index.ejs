@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Url Short</title>
+  </head>
+  <body>
+    <div class="px-4">
+      <h1 class="text-2xl font-bold item-center">URL shrinker</h1>
+      <form action="/shortUrls" method="post" class="my-4 form-inline">
+        <label for="fullUrl">Url</label>
+        <input
+          class="p-2 bg-blue-200 rounded-xl w-[50vw]"
+          type="url"
+          name="fullUrl"
+          id="fullUrl"
+        />
+        <button
+          type="submit"
+          class="border border-black p-2 rounded-xl hover:bg-slate-400"
+        >
+          Short Url
+        </button>
+      </form>
+      <table class="min-w-full border-collapse border border-gray-300">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="border border-gray-300 px-4 py-2">Full URL</th>
+            <th class="border border-gray-300 px-4 py-2">Short URL</th>
+            <th class="border border-gray-300 px-4 py-2">Clicks</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% shortUrls.forEach(shortUrl => { %>
+          <tr class="border border-gray-300">
+            <td class="border border-gray-300 px-4 py-2">
+              <a href="<%= shortUrl.full %>"><%= shortUrl.full %></a>
+            </td>
+            <td class="border border-gray-300 px-4 py-2">
+              <a href="<%= shortUrl.short %>"><%= shortUrl.short %></a>
+            </td>
+            <td class="border border-gray-300 px-4 py-2">
+              <%= shortUrl.clicks %>
+            </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
